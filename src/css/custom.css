@@ -4,192 +4,683 @@
  * work well for content-centric websites.
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 /* CSS Custom Properties */
 :root {
-  /* Primary colors - Warm pale yellow theme */
-  --ifm-color-primary: #d4a574;
-  --ifm-color-primary-dark: #c9956a;
-  --ifm-color-primary-darker: #c28d62;
-  --ifm-color-primary-darkest: #a6734f;
-  --ifm-color-primary-light: #dfb57e;
-  --ifm-color-primary-lighter: #e2bd86;
-  --ifm-color-primary-lightest: #ecd596;
-  
-  /* Background colors - Warm reading theme */
-  --ifm-background-color: #fefcf7;
-  --ifm-background-surface-color: #faf7f0;
-  --ifm-navbar-background-color: #fefcf7;
-  --ifm-footer-background-color: #faf7f0;
-  
-  /* Text colors */
-  --ifm-font-color-base: #2d2419;
-  --ifm-font-color-secondary: #6b5940;
-  --ifm-color-emphasis-300: #8b7355;
-  --ifm-color-emphasis-600: #6b5940;
-  --ifm-color-emphasis-700: #4a3e2a;
-  --ifm-color-emphasis-800: #2d2419;
-  
-  /* Border and emphasis colors */
-  --ifm-color-emphasis-100: #f5f2e8;
-  --ifm-color-emphasis-200: #ede7d3;
-  --ifm-color-emphasis-400: #d4c4a0;
-  --ifm-color-emphasis-500: #b8a082;
-  
-  /* Code and syntax highlighting */
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(212, 165, 116, 0.1);
-  --ifm-code-background: #f5f2e8;
-  
-  /* Custom variables for our theme */
-  --border-color: rgba(212, 165, 116, 0.2);
-  --grid-color: rgba(212, 165, 116, 0.08);
-  --shadow-light: 0 2px 8px rgba(212, 165, 116, 0.1);
-  --shadow-medium: 0 4px 16px rgba(212, 165, 116, 0.15);
-  --shadow-heavy: 0 8px 32px rgba(212, 165, 116, 0.2);
-  
-  /* Animation variables */
-  --transition-fast: 0.2s ease;
-  --transition-normal: 0.3s ease;
-  --transition-slow: 0.5s ease;
-  
-  /* Spacing variables */
-  --spacing-xs: 0.25rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 1.5rem;
-  --spacing-xl: 2rem;
-  --spacing-2xl: 3rem;
-  --spacing-3xl: 4rem;
-  
-  /* Border radius variables */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-  --radius-full: 50%;
+    /* Primary colors - Warm pale yellow theme */
+    --ifm-color-primary: #d4a574;
+    --ifm-color-primary-dark: #c9956a;
+    --ifm-color-primary-darker: #c28d62;
+    --ifm-color-primary-darkest: #a6734f;
+    --ifm-color-primary-light: #dfb57e;
+    --ifm-color-primary-lighter: #e2bd86;
+    --ifm-color-primary-lightest: #ecd596;
+
+    /* Background colors - Warm reading theme */
+    --ifm-background-color: #fefcf7;
+    --ifm-background-surface-color: #faf7f0;
+    --ifm-navbar-background-color: #fefcf7;
+    --ifm-footer-background-color: #faf7f0;
+
+    /* Text colors */
+    --ifm-font-color-base: #2d2419;
+    --ifm-font-color-secondary: #6b5940;
+    --ifm-color-emphasis-300: #8b7355;
+    --ifm-color-emphasis-600: #6b5940;
+    --ifm-color-emphasis-700: #4a3e2a;
+    --ifm-color-emphasis-800: #2d2419;
+
+    /* Border and emphasis colors */
+    --ifm-color-emphasis-100: #f5f2e8;
+    --ifm-color-emphasis-200: #ede7d3;
+    --ifm-color-emphasis-400: #d4c4a0;
+    --ifm-color-emphasis-500: #b8a082;
+
+    /* Code and syntax highlighting */
+    --ifm-code-font-size: 95%;
+    --docusaurus-highlighted-code-line-bg: rgba(212, 165, 116, 0.2);
+    --ifm-code-background: #ffffff;
+
+    /* Custom variables for our theme */
+    --border-color: rgba(212, 165, 116, 0.2);
+    --grid-color: rgba(212, 165, 116, 0.08);
+    --shadow-light: 0 2px 8px rgba(212, 165, 116, 0.1);
+    --shadow-medium: 0 4px 16px rgba(212, 165, 116, 0.15);
+    --shadow-heavy: 0 8px 32px rgba(212, 165, 116, 0.2);
+
+    /* Animation variables */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+
+    /* Spacing variables */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    --spacing-3xl: 4rem;
+
+    /* Border radius variables */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-full: 50%;
 }
 
 /* Dark theme colors */
-[data-theme='dark'] {
-  /* Primary colors - Maintaining warm theme in dark mode */
-  --ifm-color-primary: #d4a574;
-  --ifm-color-primary-dark: #c9956a;
-  --ifm-color-primary-darker: #c28d62;
-  --ifm-color-primary-darkest: #a6734f;
-  --ifm-color-primary-light: #dfb57e;
-  --ifm-color-primary-lighter: #e2bd86;
-  --ifm-color-primary-lightest: rgba(212, 165, 116, 0.15);
-  
-  /* Background colors - Dark theme */
-  --ifm-background-color: #0a0a0a;
-  --ifm-background-surface-color: #141414;
-  --ifm-navbar-background-color: rgba(10, 10, 10, 0.95);
-  --ifm-footer-background-color: #0a0a0a;
-  
-  /* Text colors for dark theme */
-  --ifm-font-color-base: #ffffff;
-  --ifm-font-color-secondary: #b0b0b0;
-  --ifm-color-emphasis-300: #4a4a4a;
-  --ifm-color-emphasis-600: #888888;
-  --ifm-color-emphasis-700: #cccccc;
-  --ifm-color-emphasis-800: #ffffff;
-  
-  /* Border and emphasis colors for dark theme */
-  --ifm-color-emphasis-100: #1a1a1a;
-  --ifm-color-emphasis-200: #2a2a2a;
-  --ifm-color-emphasis-400: #4a4a4a;
-  --ifm-color-emphasis-500: #6a6a6a;
-  
-  /* Code colors for dark theme */
-  --docusaurus-highlighted-code-line-bg: rgba(212, 165, 116, 0.1);
-  --ifm-code-background: #1a1a1a;
-  
-  /* Custom variables for dark theme */
-  --border-color: rgba(212, 165, 116, 0.2);
-  --grid-color: rgba(212, 165, 116, 0.05);
-  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.3);
-  --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.4);
-  --shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.5);
+[data-theme="dark"] {
+    /* Primary colors - Maintaining warm theme in dark mode */
+    --ifm-color-primary: #d4a574;
+    --ifm-color-primary-dark: #c9956a;
+    --ifm-color-primary-darker: #c28d62;
+    --ifm-color-primary-darkest: #a6734f;
+    --ifm-color-primary-light: #dfb57e;
+    --ifm-color-primary-lighter: #e2bd86;
+    --ifm-color-primary-lightest: rgba(212, 165, 116, 0.15);
+
+    /* Background colors - Dark theme */
+    --ifm-background-color: #0a0a0a;
+    --ifm-background-surface-color: #141414;
+    --ifm-navbar-background-color: rgba(10, 10, 10, 0.95);
+    --ifm-footer-background-color: #0a0a0a;
+
+    /* Text colors for dark theme */
+    --ifm-font-color-base: #ffffff;
+    --ifm-font-color-secondary: #b0b0b0;
+    --ifm-color-emphasis-300: #4a4a4a;
+    --ifm-color-emphasis-600: #888888;
+    --ifm-color-emphasis-700: #cccccc;
+    --ifm-color-emphasis-800: #ffffff;
+
+    /* Border and emphasis colors for dark theme */
+    --ifm-color-emphasis-100: #1a1a1a;
+    --ifm-color-emphasis-200: #2a2a2a;
+    --ifm-color-emphasis-400: #4a4a4a;
+    --ifm-color-emphasis-500: #6a6a6a;
+
+    /* Code colors for dark theme */
+    --docusaurus-highlighted-code-line-bg: rgba(212, 165, 116, 0.1);
+    --ifm-code-background: #1a1a1a;
+
+    /* Custom variables for dark theme */
+    --border-color: rgba(212, 165, 116, 0.2);
+    --grid-color: rgba(212, 165, 116, 0.05);
+    --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
-body{
-  font-family: Montserrat, sans-serif;
+body {
+    font-family: Montserrat, sans-serif;
 }
 
 h1 {
-  /* font-size: 2.5rem; */
-  font-family: Montserrat, sans-serif;
-  font-weight: 600;
-  font-style: normal;
-  color: var(--ifm-color-primary-dark);
+    /* font-size: 2.5rem; */
+    font-family: Montserrat, sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    color: var(--ifm-color-primary-dark);
 }
 
 h2 {
-  /* font-size: 2rem; */
-  font-family: Montserrat, sans-serif;
-  font-weight: 600;
-  font-style: normal;
-  color: var(--ifm-color-primary-dark);
+    /* font-size: 2rem; */
+    font-family: Montserrat, sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    color: var(--ifm-color-primary-dark);
 }
 
 h3 {
-  /* font-size: 1.5rem; */
-  font-family: Montserrat, sans-serif;
-  font-weight: 600;
-  font-style: normal;
-  color: var(--ifm-font-color-secondary);
+    /* font-size: 1.5rem; */
+    font-family: Montserrat, sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    color: var(--ifm-font-color-secondary);
 }
 
 h4 {
-  /* font-size: 1.25rem; */
-  font-family: "Montserrat", sans-serif;
-  font-weight: 600;
-  font-style: normal;
-  color: var(--ifm-font-color-base);
+    /* font-size: 1.25rem; */
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    color: var(--ifm-font-color-base);
 }
 
 h5 {
-  /* font-size: 1rem; */
-  font-family: Montserrat, sans-serif;
-  font-weight: 600;
-  font-style: normal;
-  color: var(--ifm-font-color-base);
+    /* font-size: 1rem; */
+    font-family: Montserrat, sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    color: var(--ifm-font-color-base);
 }
 
 h6 {
-  /* font-size: 0.875rem; */
-  font-family: Montserrat, sans-serif;
-  font-weight: 600;
-  font-style: normal;
-  color: var(--ifm-font-color-base);
+    /* font-size: 0.875rem; */
+    font-family: Montserrat, sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    color: var(--ifm-font-color-base);
 }
 
-p{
-  /* font-size: 1rem; */
-  font-family: Montserrat, sans-serif;
-  font-weight: 400;
-  line-height: 1.6;
-  color: var(--ifm-font-color-base);
+p {
+    /* font-size: 1rem; */
+    font-family: Montserrat, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--ifm-font-color-base);
 }
-
 
 .navbar__title {
-  font-size: 25px;
-  /* font-weight: bold; */
-  font-family: Montserrat;
+    font-size: 25px;
+    /* font-weight: bold; */
+    font-family: Montserrat;
 }
-.navbar__item2{
-  font-size: 18px;
-  /* font-weight: bold; */
-  font-family: Montserrat;
-  font-style: italic;
+.navbar__item2 {
+    font-size: 18px;
+    /* font-weight: bold; */
+    font-family: Montserrat;
+    font-style: italic;
 }
-.navbar__items{
-  font-size: 18px;
-  font-weight: bold;
-  font-family: Montserrat;
+.navbar__items {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: Montserrat;
+}
+
+/* ========================================
+   Enhanced Code Block Styling
+   ======================================== */
+
+/* Code block container */
+.theme-code-block {
+    position: relative;
+    border-radius: var(--radius-lg) !important;
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
+    transition: all var(--transition-normal);
+    margin: var(--spacing-md) 0;
+    border: 2px solid var(--border-color);
+}
+
+/* Light mode - cleaner look */
+[data-theme="light"] .theme-code-block,
+html:not([data-theme="dark"]) .theme-code-block {
+    border: 1px solid rgba(212, 165, 116, 0.4) !important;
+    box-shadow: 0 2px 8px rgba(212, 165, 116, 0.15) !important;
+}
+
+/* Dark mode - cleaner look */
+[data-theme="dark"] .theme-code-block {
+    border: 1px solid rgba(212, 165, 116, 0.2) !important;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5) !important;
+}
+
+.theme-code-block:hover {
+    box-shadow: var(--shadow-heavy);
+    transform: translateY(-2px);
+}
+
+/* Code block styling */
+.prism-code {
+    position: relative;
+    padding: var(--spacing-md) !important;
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+    border-radius: var(--radius-lg) !important;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    font-family:
+        "Fira Code", "Monaco", "Consolas", "Courier New", monospace !important;
+}
+
+/* Smooth scrollbar for code blocks */
+.prism-code::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+}
+
+.prism-code::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.prism-code::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: var(--radius-full);
+    transition: background var(--transition-fast);
+}
+
+.prism-code::-webkit-scrollbar-thumb:hover {
+    background: var(--ifm-color-primary);
+}
+
+/* Language indicator */
+.theme-code-block::before {
+    content: attr(data-language);
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-md);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--ifm-font-color-secondary);
+    opacity: 0.7;
+    transition: opacity var(--transition-fast);
+    pointer-events: none;
+    z-index: 10;
+}
+
+.theme-code-block:hover::before {
+    opacity: 1;
+    color: var(--ifm-color-primary);
+}
+
+/* Copy button styling */
+button[title="Copy"],
+.copyButton_cDEo {
+    background: var(--ifm-color-primary) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: var(--radius-md) !important;
+    padding: var(--spacing-xs) var(--spacing-sm) !important;
+    font-size: 0.85rem !important;
+    font-weight: 500 !important;
+    transition: all var(--transition-fast) !important;
+    opacity: 0;
+    transform: translateY(-4px);
+}
+
+.theme-code-block:hover button[title="Copy"],
+.theme-code-block:hover .copyButton_cDEo {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+button[title="Copy"]:hover,
+.copyButton_cDEo:hover {
+    background: var(--ifm-color-primary-dark) !important;
+    transform: scale(1.05) !important;
+}
+
+button[title="Copy"]:active,
+.copyButton_cDEo:active {
+    transform: scale(0.95) !important;
+}
+
+/* Line numbers */
+.prism-code[class*="language-"] .token-line {
+    padding: 0 var(--spacing-md);
+    transition: background var(--transition-fast);
+}
+
+.prism-code[class*="language-"] .token-line:nth-child(even) {
+    background: transparent;
+}
+
+/* Highlighted lines from magic comments */
+.theme-code-block-highlighted-lines {
+    background: rgba(212, 165, 116, 0.15) !important;
+    border-left: 3px solid var(--ifm-color-primary);
+    display: block;
+    margin: 0 calc(-1 * var(--spacing-md));
+    padding-left: calc(var(--spacing-md) - 3px) !important;
+}
+
+/* Focused lines */
+.code-block-focus-lines {
+    background: rgba(212, 165, 116, 0.08) !important;
+    border-radius: var(--radius-sm);
+}
+
+/* ========================================
+   Line Numbers Styling (Docusaurus Built-in)
+   ======================================== */
+
+/* Docusaurus uses PrismJS line numbers plugin which adds .line-numbers-rows */
+/* Line numbers are enabled with: ```language showLineNumbers */
+
+/* IMPORTANT: Remove background from line numbers completely */
+.codeBlockContainer .line-numbers-rows,
+.prism-code .line-numbers-rows,
+pre[class*="language-"].line-numbers .line-numbers-rows {
+    background: transparent !important;
+    background-color: transparent !important;
+    font-size: 0.85em;
+    color: #666666;
+    border-right: 1px solid rgba(212, 165, 116, 0.25) !important;
+    padding-right: 0.75em;
+    user-select: none;
+    font-family: "Montserrat", monospace;
+    font-weight: 600;
+}
+
+/* Target each individual line number span */
+.codeBlockContainer .line-numbers-rows > span,
+.prism-code .line-numbers-rows > span,
+pre[class*="language-"].line-numbers .line-numbers-rows > span {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Remove background from ::before pseudo-element */
+.codeBlockContainer .line-numbers-rows > span:before,
+.prism-code .line-numbers-rows > span:before,
+pre[class*="language-"].line-numbers .line-numbers-rows > span:before {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Force transparent in light mode */
+html:not([data-theme="dark"]) .codeBlockContainer .line-numbers-rows,
+html:not([data-theme="dark"]) .prism-code .line-numbers-rows,
+html:not([data-theme="dark"])
+    pre[class*="language-"].line-numbers
+    .line-numbers-rows,
+html:not([data-theme="dark"]) .codeBlockContainer .line-numbers-rows > span,
+html:not([data-theme="dark"]) .prism-code .line-numbers-rows > span,
+html:not([data-theme="dark"])
+    pre[class*="language-"].line-numbers
+    .line-numbers-rows
+    > span {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Force transparent in dark mode */
+html[data-theme="dark"] .codeBlockContainer .line-numbers-rows,
+html[data-theme="dark"] .prism-code .line-numbers-rows,
+html[data-theme="dark"] pre[class*="language-"].line-numbers .line-numbers-rows,
+html[data-theme="dark"] .codeBlockContainer .line-numbers-rows > span,
+html[data-theme="dark"] .prism-code .line-numbers-rows > span,
+html[data-theme="dark"]
+    pre[class*="language-"].line-numbers
+    .line-numbers-rows
+    > span {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Each line number */
+.codeBlockContainer .line-numbers-rows > span:before {
+    color: #666666 !important;
+    font-weight: 600;
+}
+
+/* Dark mode line numbers */
+html[data-theme="dark"] .codeBlockContainer .line-numbers-rows {
+    color: #b0b0b0;
+    border-right: 1px solid rgba(212, 165, 116, 0.2) !important;
+}
+
+html[data-theme="dark"] .codeBlockContainer .line-numbers-rows > span:before {
+    color: #b0b0b0 !important;
+}
+
+/* Highlighted lines from magic comments */
+.codeBlockContainer .line-numbers-rows > span.highlight-line:before {
+    color: var(--ifm-color-primary-dark) !important;
+    font-weight: 700;
+}
+
+html[data-theme="dark"]
+    .codeBlockContainer
+    .line-numbers-rows
+    > span.highlight-line:before {
+    color: var(--ifm-color-primary) !important;
+}
+
+/* Hover effect on lines - highlight the line number */
+.codeBlockContainer .line-numbers-rows > span:hover:before {
+    color: var(--ifm-color-primary-dark) !important;
+    font-weight: 700;
+}
+
+html[data-theme="dark"]
+    .codeBlockContainer
+    .line-numbers-rows
+    > span:hover:before {
+    color: var(--ifm-color-primary) !important;
+}
+
+/* Inline code styling */
+code:not(pre > code) {
+    background: var(--ifm-code-background) !important;
+    color: var(--ifm-color-primary-dark) !important;
+    padding: 0.2em 0.4em !important;
+    border-radius: var(--radius-sm) !important;
+    font-size: 0.9em !important;
+    border: 1px solid var(--border-color);
+    transition: all var(--transition-fast);
+}
+
+/* Light mode inline code - better visibility */
+[data-theme="light"] code:not(pre > code),
+html:not([data-theme="dark"]) code:not(pre > code) {
+    background: #fff !important;
+    border: 1px solid rgba(212, 165, 116, 0.5) !important;
+    box-shadow: 0 1px 3px rgba(212, 165, 116, 0.1);
+}
+
+code:not(pre > code):hover {
+    background: var(--ifm-color-primary-lightest) !important;
+    border-color: var(--ifm-color-primary);
+    transform: scale(1.02);
+    display: inline-block;
+}
+
+/* Token styling enhancements */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    color: var(--ifm-color-emphasis-600);
+    font-style: italic;
+}
+
+.token.punctuation {
+    color: var(--ifm-font-color-secondary);
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+    color: #e76f51;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+    color: #2a9d8f;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+    color: #e9c46a;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+    color: #264653;
+    font-weight: 600;
+}
+
+.token.function,
+.token.class-name {
+    color: #457b9d;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+    color: #f4a261;
+}
+
+/* Dark mode token adjustments */
+[data-theme="dark"] .token.property,
+[data-theme="dark"] .token.tag,
+[data-theme="dark"] .token.boolean,
+[data-theme="dark"] .token.number,
+[data-theme="dark"] .token.constant,
+[data-theme="dark"] .token.symbol,
+[data-theme="dark"] .token.deleted {
+    color: #f07178;
+}
+
+[data-theme="dark"] .token.selector,
+[data-theme="dark"] .token.attr-name,
+[data-theme="dark"] .token.string,
+[data-theme="dark"] .token.char,
+[data-theme="dark"] .token.builtin,
+[data-theme="dark"] .token.inserted {
+    color: #c3e88d;
+}
+
+[data-theme="dark"] .token.operator,
+[data-theme="dark"] .token.entity,
+[data-theme="dark"] .token.url,
+[data-theme="dark"] .language-css .token.string,
+[data-theme="dark"] .style .token.string {
+    color: #ffcb6b;
+}
+
+[data-theme="dark"] .token.atrule,
+[data-theme="dark"] .token.attr-value,
+[data-theme="dark"] .token.keyword {
+    color: #c792ea;
+    font-weight: 600;
+}
+
+[data-theme="dark"] .token.function,
+[data-theme="dark"] .token.class-name {
+    color: #82aaff;
+}
+
+[data-theme="dark"] .token.regex,
+[data-theme="dark"] .token.important,
+[data-theme="dark"] .token.variable {
+    color: #f78c6c;
+}
+
+/* Language-specific color themes */
+
+/* Python */
+.token.language-python .token.keyword {
+    color: #ff6b6b;
+}
+.token.language-python .token.function {
+    color: #4ecdc4;
+}
+[data-theme="dark"] .token.language-python .token.keyword {
+    color: #c792ea;
+}
+[data-theme="dark"] .token.language-python .token.function {
+    color: #82aaff;
+}
+
+/* Java */
+.token.language-java .token.class-name {
+    color: #457b9d;
+    font-weight: 600;
+}
+.token.language-java .token.keyword {
+    color: #e63946;
+}
+[data-theme="dark"] .token.language-java .token.class-name {
+    color: #89ddff;
+}
+[data-theme="dark"] .token.language-java .token.keyword {
+    color: #c792ea;
+}
+
+/* JavaScript/JSX */
+.token.language-javascript .token.function,
+.token.language-javascript .token.class-name {
+    color: #f4a261;
+}
+[data-theme="dark"] .token.language-javascript .token.function,
+[data-theme="dark"] .token.language-javascript .token.class-name {
+    color: #82aaff;
+}
+
+/* Go */
+.token.language-go .token.function {
+    color: #2a9d8f;
+    font-weight: 600;
+}
+[data-theme="dark"] .token.language-go .token.function {
+    color: #c792ea;
+}
+
+/* Rust */
+.token.language-rust .token.keyword {
+    color: #e76f51;
+}
+.token.language-rust .token.function {
+    color: #457b9d;
+}
+[data-theme="dark"] .token.language-rust .token.keyword {
+    color: #c792ea;
+}
+[data-theme="dark"] .token.language-rust .token.function {
+    color: #82aaff;
+}
+
+/* Code block wrapper animation */
+.markdown > div > pre {
+    position: relative;
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .prism-code {
+        font-size: 0.85rem !important;
+        padding: var(--spacing-sm) !important;
+    }
+
+    .theme-code-block::before {
+        font-size: 0.65rem;
+        top: var(--spacing-xs);
+        right: var(--spacing-sm);
+    }
+
+    button[title="Copy"],
+    .copyButton_cDEo {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Word wrap for long code lines */
+.prism-code {
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
