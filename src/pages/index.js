@@ -66,12 +66,12 @@ export default function Home() {
             </div>
             
             <div className={styles.heroSkills}>
-              <div className={styles.skillTag}>React</div>
-              <div className={styles.skillTag}>JavaScript</div>
+              <div className={styles.skillTag}>Go</div>
               <div className={styles.skillTag}>Node.js</div>
               <div className={styles.skillTag}>Python</div>
-              <div className={styles.skillTag}>CSS</div>
               <div className={styles.skillTag}>Git</div>
+              <div className={styles.skillTag}>Linux</div>
+              <div className={styles.skillTag}>Cpp</div> 
             </div>
           </div>
         </main>

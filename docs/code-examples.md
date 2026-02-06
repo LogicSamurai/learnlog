@@ -90,9 +90,10 @@ func main() {
 
 ```rust showLineNumbers
 fn main() {
+    // focus-start
     let greeting = "Hello, Rust!";
     println!("{}", greeting);
-
+    // focus-end
     let numbers = vec![1, 2, 3, 4, 5];
     for num in numbers {
         println!("Number: {}", num);
@@ -165,10 +166,12 @@ You can highlight specific lines using magic comments:
 ```java showLineNumbers
 public class Example {
     public static void main(String[] args) {
-        int x = 10; // highlight-next-line
-        int y = 20; // highlight-start
+        // highlight-next-line
+        int x = 10; 
+        int y = 20; 
+        // highlight-start
         int sum = x + y;
-        System.out.println("Sum: " + sum);
+        System.out.println("Sum: " + sum); 
         // highlight-end
     }
 }
