@@ -324,16 +324,31 @@ button[title="Copy"]:active,
 }
 
 /* Highlighted lines from magic comments */
-.theme-code-block-highlighted-lines {
+.token-line[data-highlight-line],
+.token-line.theme-code-block-highlighted-lines,
+.token-line.highlight-line {
     background: rgba(212, 165, 116, 0.15) !important;
+    position: relative;
+}
+
+/* Highlighted lines in code blocks with line numbers */
+.line-numbers .token-line[data-highlight-line],
+.line-numbers .token-line.theme-code-block-highlighted-lines,
+.line-numbers .token-line.highlight-line {
+    background: rgba(212, 165, 116, 0.15) !important;
+}
+
+/* Highlighted lines in code blocks WITHOUT line numbers */
+.prism-code:not(.line-numbers) .token-line[data-highlight-line],
+.prism-code:not(.line-numbers) .token-line.theme-code-block-highlighted-lines,
+.prism-code:not(.line-numbers) .token-line.highlight-line {
     border-left: 3px solid var(--ifm-color-primary);
-    display: block;
-    margin: 0 calc(-1 * var(--spacing-md));
-    padding-left: calc(var(--spacing-md) - 3px) !important;
+    margin-left: calc(-1 * var(--spacing-md));
+    padding-left: calc(var(--spacing-md) + 3px);
 }
 
 /* Focused lines */
-.code-block-focus-lines {
+.token-line.code-block-focus-lines {
     background: rgba(212, 165, 116, 0.08) !important;
     border-radius: var(--radius-sm);
 }
