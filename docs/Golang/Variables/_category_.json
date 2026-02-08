@@ -1,0 +1,9 @@
+{
+  "label": "Variables",
+  "position": 1,
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn about variables in Go - from basic types to string formatting and runes."
+  }
+}

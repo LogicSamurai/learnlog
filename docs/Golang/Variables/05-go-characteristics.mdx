@@ -1,0 +1,113 @@
+---
+sidebar_position: 5
+title: Go Characteristics
+---
+
+import Quiz from '@site/src/components/Quiz';
+
+# Go Characteristics
+
+## Statically Typed Language
+
+Go is a **statically typed language**, which means the type of a variable is determined at compile time - before the code even runs. This helps our editor and compiler display type errors before the code is executed, catching bugs early in development.
+
+```go title="Type checking in action"
+package main
+
+func main() {
+    var age int = 25
+    age = "twenty-five" // Compile error: cannot use "twenty-five" (string) as int
+}
+```
+
+### Static vs Dynamic Typing
+
+| Static Typing (Go, Java, C++) | Dynamic Typing (Python, JavaScript) |
+|-------------------------------|-------------------------------------|
+| Types checked at compile time | Types checked at runtime |
+| Errors caught before running | Errors found when code executes |
+| More verbose but safer | Less verbose but more error-prone |
+| Better IDE support | More flexibility |
+
+:::info 
+Languages also have **strong** or **weak** typing, meaning stricter or weaker type checking rules. Go is **strongly** and **statically** typed.
+:::
+
+## String Concatenation
+
+Two strings can be concatenated using the `+` operator. But the compiler will not allow you to concatenate a string with an `int` or `float64`.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    firstName := "John"
+    lastName := "Doe"
+    
+    // This works - string + string
+    fullName := firstName + " " + lastName
+    fmt.Println(fullName) // Output: John Doe
+    
+    // This would NOT work - string + int
+    // age := 25
+    // greeting := "I am " + age // Compile error!
+    
+    // Instead, use fmt.Sprintf
+    age := 25
+    greeting := fmt.Sprintf("I am %d years old", age)
+    fmt.Println(greeting) // Output: I am 25 years old
+}
+```
+
+## Compiled vs. Interpreted
+
+**Compiled languages:** Code is compiled into an executable file using a compiler. This executable can run on any compatible machine without the source code.
+
+**Interpreted languages:** Source code is executed directly by an interpreter, which translates it into machine code on the fly.
+
+| Compiled (Go, C, C++, Rust) | Interpreted (Python, JavaScript, Ruby) |
+|-----------------------------|----------------------------------------|
+| Faster execution | Slower execution |
+| Requires compilation step | Runs directly |
+| Portable executables | Needs interpreter installed |
+| Harder to debug sometimes | Easier to debug line-by-line |
+
+### Visual Comparison
+
+```txt title="Compiled Language Flow"
+Source Code (.go) → Compiler → Executable (.exe) → Run
+```
+
+```txt title="Interpreted Language Flow"
+Source Code (.py) → Interpreter → Run (line by line)
+```
+
+### Why Go is Special
+
+Go combines the best of both worlds:
+- **Fast like compiled languages** - produces native machine code
+- **Quick compilation** - compiles almost as fast as interpreted languages
+- **Cross-compilation** - can compile for different OS/architectures from one machine
+
+```bash
+# Compile for different platforms from one machine!
+GOOS=windows go build -o myapp.exe
+GOOS=linux go build -o myapp
+GOOS=darwin go build -o myapp-mac
+```
+
+## Quiz
+
+<Quiz
+  question="What is the main advantage of a statically typed language like Go?"
+  options={[
+    "Code runs slower but is more flexible",
+    "Types are checked at runtime for better debugging",
+    "Type errors are caught at compile time before the code runs",
+    "Variables don't need to be declared"
+  ]}
+  correctIndex={2}
+  explanation="In a statically typed language like Go, the compiler checks types at compile time. This means type errors are caught before the program runs, preventing many bugs from ever reaching production."
+/>

@@ -1,0 +1,64 @@
+---
+sidebar_label: Switch Case
+description: "Learn about switch statements in Go - a more elegant way to write multiple if-else statements."
+---
+
+# Switch Statements
+Go also has `switch` statements which are a more elegant way to write multiple `if-else` statements. The syntax is as follows:
+```go
+switch VARIABLE {
+case VALUE1:
+    // code to execute if VARIABLE == VALUE1
+case VALUE2:
+    // code to execute if VARIABLE == VALUE2
+default:
+    // code to execute if VARIABLE doesn't match any case
+}
+```
+
+
+```go title="Example"
+func getCreator(os string) string {
+    var creator string
+    switch os {
+    case "linux":
+        creator = "Linus Torvalds"
+    case "windows":
+        creator = "Bill Gates"
+    case "mac":
+        creator = "A Steve"
+    default:
+        creator = "Unknown"
+    }
+    return creator
+}
+```
+
+Notice that in Go, the `break` statement is not required at the end of each case block. Go automatically breaks out of the switch after executing a case.
+
+If you do want a case to fallthrough to the next case, you can use the `fallthrough` keyword explicitly.
+
+```go
+func getCreator(os string) string {
+    var creator string
+    switch os {
+    case "linux":
+        creator = "Linus Torvalds"
+    case "windows":
+        creator = "Bill Gates"
+    
+    // all three cases will set creator to "A Steve" 
+    case "macOS":
+        fallthrough
+    case "Mac OS X":
+        fallthrough
+    case "mac":
+        creator = "A Steve"
+    default:
+        creator = "Unknown"
+    }
+    return creator
+}
+```
+
+The `default` case does what you'd expect - it runs if no other case matches.

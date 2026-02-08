@@ -1,0 +1,67 @@
+---
+sidebar_position: 1
+title: Basic Types
+---
+
+import Quiz from '@site/src/components/Quiz';
+
+# Basic Types
+
+Variables are containers which are used to store values. Think of them as labeled boxes where you can put data.
+
+## Basic Variable Types
+
+| Type | Description | Example |
+|------|-------------|---------|
+| `bool` | A boolean value, either `true` or `false` | `true` |
+| `string` | A sequence of characters | `"Hello"` |
+| `int` | A signed integer (positive or negative) | `42`, `-17` |
+| `float64` | A floating-point number (decimals) | `3.14159` |
+| `byte` | 8 bits of data (alias for `uint8`) | `255` |
+
+## Zero Values
+
+In Go, variables declared without an explicit initial value are given their **zero value**. This is a safety feature that prevents undefined behavior.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    var myBool bool       // zero value: false
+    var myString string   // zero value: "" (empty string)
+    var myInt int         // zero value: 0
+    var myFloat float64   // zero value: 0.0
+    
+    fmt.Println("bool:", myBool)
+    fmt.Println("string:", myString)
+    fmt.Println("int:", myInt)
+    fmt.Println("float64:", myFloat)
+}
+```
+
+```txt title="Output"
+bool: false
+string: 
+int: 0
+float64: 0
+```
+
+:::tip
+Go's zero values mean you never have to worry about uninitialized variables causing unexpected crashes!
+:::
+
+## Quiz
+
+<Quiz
+  question="What is the zero value of a boolean in Go?"
+  options={[
+    "true",
+    "false",
+    "nil",
+    "0"
+  ]}
+  correctIndex={1}
+  explanation="In Go, the zero value of a boolean is `false`. All boolean variables are initialized to false by default if no value is assigned."
+/>

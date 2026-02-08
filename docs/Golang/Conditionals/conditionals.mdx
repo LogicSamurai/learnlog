@@ -1,0 +1,83 @@
+---
+sidebar_position: 1
+title: Conditionals
+description: "Learn about conditionals in Go - from if statements to switch cases and type assertions."
+---
+
+import Quiz from '@site/src/components/Quiz';
+
+# Conditionals
+`if` statements in Go do not use the parentheses `()` around the condition, but the curly braces `{}` are required for the block of code to execute.
+
+```go
+if height > 4 {
+    fmt.Println("You can ride the roller coaster!")
+}
+```
+
+`else if` and `else` are also the same as u might expect:
+```go
+if height > 4 {
+    fmt.Println("You can ride the roller coaster!")
+} else if height == 4 {
+    fmt.Println("You just meet the height requirement, but be careful!")
+} else {
+    fmt.Println("Sorry, you are not tall enough to ride.")
+}
+```
+
+:::warning
+Unlike other languages, in go u can't put the statring curly brace `{` on the next line. It must be on the same line as the `if`, `else if`, or `else` statement.
+:::
+
+## Initial Statement in If Block
+An `initial statement` is a statement that executes before the condition is evaluated in an `if` statement. This allows you to declare and initialize variables that are only needed within that scope/block.
+ 
+```go 
+if INITIAL_STATEMENT; CONDITION {    
+}
+```
+
+### Why would i use this?
+- First it is a bit shorter and cleaner in visibility
+- Second it limits the scope of the variable
+
+For example instead fo writing like this
+```go
+length := getLength(email)
+if length < 1 {
+    fmt.Println("Email is invalid")
+}
+```
+You can write like this
+```go
+if length := getLength(email); length < 1 {
+    fmt.Println("Email is invalid")
+}
+```
+
+In the above example, `length` is not available in parent scope, which is good as we only wanted it to use in this scope only and not elsewhere in the program.
+
+## Quiz
+
+<Quiz
+    question="Why would you use the 'initial' section of an if statement?"
+    options={[
+        "To speed up my code",
+        "To keep the code concise and the scope limited",
+        "To confuse other programmers",
+    ]}
+    correctIndex={1}
+    explanation="Using the 'initial' section of an if statement allows you to declare and initialize variables that are only needed within that block, keeping the code concise and limiting the scope of those variables."
+/>
+
+
+<Quiz
+  question="Which is valid Go syntax?"
+  options={[
+    "if x := 5; x > 3 {",
+    "if (x := 5; x > 3) {"
+  ]}
+  correctIndex={0}
+  explanation="In Go, the correct syntax for an if statement with an initial statement is `if x := 5; x > 3 {`. The parentheses around the condition are not used in Go's if statements."
+/>

@@ -1,0 +1,205 @@
+---
+title: Functions
+sidebar_label: Intro to Functions
+description: "Learn about functions in Go - from defining and calling functions to understanding parameters and return values."
+---
+
+# Functions
+Functions are reusable blocks of code that perform a specific task. In Go, you can define a function using the `func` keyword followed by the function name, parameters (if any), and return type (if any).
+
+```go
+func functionName(parameters) returnType {
+    // function body
+}
+```
+
+To make easier to read the code the variable type comes after the variable name
+```go
+func add(a int, b int) int {
+    return a + b
+}
+```
+In the above example, `add` is a function that takes two integer parameters `a` and `b`, and returns an integer which is the sum of `a` and `b`. Also in above example `func add(a int, b int) int` is called as `function signature`
+
+## Multiple Parameters
+When multiple parameters have the same type and are next to each other in the function signature, the type needs to be declared after the last argument only.
+
+```go
+func addToDatabase(name, email string) {
+    // function body
+}
+```
+
+```go
+func addToDatabase(name, email string, id int) {
+  // ?
+}
+```
+
+```go
+func addToDatabase(name, email string, id int, address string) {
+  // ?
+}
+```
+
+## Passing Variables by Value
+In Go, when you pass a variable to a function, you are passing a copy of that variable. This means that any changes made to the variable inside the function do not affect the original variable outside the function.
+
+```go
+func increment(x int) {
+    x++
+}
+func main() {
+    num := 5
+    increment(num)
+    fmt.Println(num) // Output: 5
+    // because the increment function receives a copy of num, so the original num remains unchanged
+}
+```
+
+## Ignoring Return Values
+If a function returns a value but you don't need it, you can ignore it using the blank identifier `_`.
+
+```go
+func getUser() (string, int) {
+    return "Alice", 30
+}
+func main() {
+    name, _ := getUser() // We only care about the name, so we ignore the age
+    fmt.Println(name) // Output: Alice
+}
+```
+
+## Named Return Values
+Return values are the values that a function sends back to the caller after it finishes executing. In Go, you can name the return values in the function signature, which allows you to return values without explicitly specifying them in the return statement.
+
+<br />
+> A return statement without arguments returns the named return values. This is known as a "naked" return. Naked return statements should be used only in short functions. They can harm readability in longer functions.
+
+<br />
+```go
+func getCoords() (x, y int) {
+	// x and y are initialized with zero values
+
+	return // automatically returns x and y
+}
+```
+Is same as:
+```go
+func getCoords() (int, int) {
+	var x int
+	var y int
+	return x, y
+}
+```
+
+## The benefits of Named Returns
+### Good for documentation (Understanding)
+Named return parameters are particularly important in longer functions with many return values.
+
+```go
+func calculator(a, b int) (mul, div int, err error) {
+    if b == 0 {
+      return 0, 0, errors.New("can't divide by zero")
+    }
+    mul = a * b
+    div = a / b
+    return mul, div, nil
+}
+```
+Which is easier to understand than:
+
+```go
+func calculator(a, b int) (int, int, error) {
+    if b == 0 {
+      return 0, 0, errors.New("can't divide by zero")
+    }
+    mul := a * b
+    div := a / b
+    return mul, div, nil
+}
+```
+
+### Less Code (Writing)
+Named return values can reduce the amount of code you need to write, especially when you have multiple return values. You can simply assign values to the named return parameters and use a naked return statement.
+
+## Explicit Returns
+Even though a function has named return values, we can still explicity return values if we want to.
+
+```go
+func getCoords() (x, y int) {
+    return x, y // explicitly returning x and y
+}
+```
+
+We can override the return values
+```go
+func getCoords() (x, y int) {
+    return 5, 6 // this is explicit, x any y are NOT returned
+}
+```
+
+Otherwise we can just use the named return values and a naked return statement
+```go
+func getCoords() (x, y int) {
+    return // implicity returns x and y with their zero values (0, 0)
+}   
+``` 
+
+## Function As Values
+In Go, functions are first-class citizens, which means they can be treated like any other value. You can assign a function to a variable, pass it as an argument to another function, or even return it from a function.
+
+```go
+func add(a, b int) int {
+    return a + b
+}  
+
+func mult(x, y int) int {
+    return x * y
+}
+
+func main() {
+    // Assigning a function to a variable
+    operation := add
+    fmt.Println(operation(2, 3)) // Output: 5
+
+    // Passing a function as an argument
+    result := performOperation(4, 5, mult)
+    fmt.Println(result) // Output: 20
+} 
+func performOperation(a, b int, op func(int, int) int) int {
+    return op(a, b)
+}
+```
+
+## Anonymous Functions
+Anonymous functions are functions that do not have a name. They're useful when defining a function that will only be used once or to create a quick closure.
+
+```go
+func conversions(converter func(int) int, x, y, z int) (int, int, int) {
+	convertedX := converter(x)
+	convertedY := converter(y)
+	convertedZ := converter(z)
+	return convertedX, convertedY, convertedZ
+}
+```
+
+We could define a function normally and then pass it in by name... but it's usually easier to just define it anonymously:
+
+```go
+func double(a int) int {
+    return a + a
+}
+
+func main() {
+    // using a named function
+	newX, newY, newZ := conversions(double, 1, 2, 3)
+	// newX is 2, newY is 4, newZ is 6
+
+    // using an anonymous function
+	newX, newY, newZ = conversions(func(a int) int {
+	    return a + a
+	}, 1, 2, 3)
+	// newX is 2, newY is 4, newZ is 6
+}
+```

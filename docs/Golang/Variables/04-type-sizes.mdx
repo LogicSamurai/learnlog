@@ -1,0 +1,43 @@
+---
+sidebar_position: 4
+title: Type Sizes
+---
+
+import Quiz from '@site/src/components/Quiz';
+
+# Type Sizes
+
+Integers, units, floats, and complex numbers all have sizes. 
+
+- Signed integers: `int8`, `int16`, `int32`, `int64`
+- Unsigned integers (non-negative numbers/no decimal): `uint8`, `uint16`, `uint32`, `uint64`, `uintptr`
+- Floating-point numbers: `float32`, `float64`
+- Complex numbers: `complex64`, `complex128`
+
+## What about the sizes?
+
+The size (8, 16, 32, 64, 128) indicates how many bits in memory will be used to store the variable. The default `int` and `uint` types refer to their respective 32 or 64-bit sizes depending on the platform (windows, linux, mac and their versions/specs).
+
+The standard sizes that should be used unless you have specific performance need (eg. should be less memory usage one...)
+
+## Type Conversion
+
+Some types can be easily converted to other types, but some cannot. For example, you can convert an `int` to a `float64`, but you cannot convert a `string` to an `int` without parsing it first.
+
+```go
+temperatureFloat := 88.26
+temperatureInt := int(temperatureFloat) // This will truncate the decimal part and give you 88
+```
+
+## Quiz
+
+<Quiz
+  question="When should you elect to NOT use a 'default type'?"
+  options={[
+    "When performance and memory are the primary concern",
+    "When my system has lots of extra hardware I want to utilize",
+    "When either a 'default' or a specific size will work"
+  ]}
+  correctIndex={0}
+  explanation="You should elect to NOT use a 'default type' when performance and memory are the primary concern. Using specific types like `int8` or `float32` can help optimize memory usage and improve performance in certain cases, especially when dealing with large datasets or performance-critical applications."
+/>

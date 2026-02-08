@@ -1,0 +1,92 @@
+---
+sidebar_position: 8
+title: Runes and String Encoding
+---
+
+import Quiz from '@site/src/components/Quiz';
+
+# Runes and String Encoding
+
+In Go, a `rune` is an alias for `int32` and represents a **Unicode code point**. This means that a `rune` can represent any character in the Unicode standard, including characters from various languages and emoji.
+
+## Strings vs Runes
+
+| Concept | Description | Example |
+|---------|-------------|---------|
+| **String** | A sequence of bytes | `"Hello"` |
+| **Rune** | A single Unicode character | `'H'`, `'你'`, `'🐻'` |
+| **Byte** | A single 8-bit value | `72` (ASCII for 'H') |
+
+```go
+name := "Alice"  // This is a string (5 runes: A, l, i, c, e)
+r := 'A'         // This is a rune representing the character 'A'
+```
+
+## Why Runes Matter
+
+Some characters, like emoji or Chinese characters, take **multiple bytes** but represent **one character (rune)**:
+
+| Character | Bytes | Runes |
+|-----------|-------|-------|
+| `"boot"` | 4 | 4 |
+| `"🐻"` | 4 | 1 |
+| `"你好"` | 6 | 2 |
+
+## len() vs RuneCountInString()
+
+- `len(s)` returns the number of **bytes** in a string
+- `utf8.RuneCountInString(s)` returns the number of **runes** (characters)
+
+```go title="Example Code"
+package main
+
+import (
+	"fmt"
+	"unicode/utf8"
+)
+
+func main() {
+	const emoji = "🐻"
+	fmt.Printf("'%s' byte length: %d\n", emoji, len(emoji))
+	fmt.Printf("'%s' rune length: %d\n", emoji, utf8.RuneCountInString(emoji))
+
+	const word = "boot"
+	fmt.Printf("'%s' byte length: %d\n", word, len(word))
+	fmt.Printf("'%s' rune length: %d\n", word, utf8.RuneCountInString(word))
+	
+	const chinese = "你好"
+	fmt.Printf("'%s' byte length: %d\n", chinese, len(chinese))
+	fmt.Printf("'%s' rune length: %d\n", chinese, utf8.RuneCountInString(chinese))
+}
+```
+
+```txt title="Output"
+'🐻' byte length: 4
+'🐻' rune length: 1
+'boot' byte length: 4
+'boot' rune length: 4
+'你好' byte length: 6
+'你好' rune length: 2
+```
+
+:::info Why This Matters
+Understanding runes is crucial when working with:
+- Internationalization (i18n)
+- Emoji handling
+- Text processing with non-ASCII characters
+- String manipulation in multilingual applications
+:::
+
+## Quiz
+
+<Quiz
+  question="What would len() return when passed a single rune like a bear emoji?"
+  options={[
+    "1 - because it's one character",
+    "4 - because the bear emoji takes 4 bytes",
+    "This won't compile - len() doesn't work on runes",
+    "0 - because emojis aren't supported"
+  ]}
+  correctIndex={2}
+  explanation="The bear emoji with single quotes is a rune, not a string. The len() function works on strings, slices, arrays, maps, and channels - not on individual runes. To get the byte length of an emoji, you'd need to use a string literal which returns 4 bytes for the bear emoji."
+/>

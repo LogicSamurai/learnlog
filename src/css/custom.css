@@ -239,6 +239,16 @@ html:not([data-theme="dark"]) .theme-code-block {
         "Fira Code", "Monaco", "Consolas", "Courier New", monospace !important;
 }
 
+/* Reduce left padding when line numbers are NOT shown */
+.prism-code:not(.line-numbers) {
+    padding-left: var(--spacing-sm) !important;
+}
+
+/* Ensure proper left padding when line numbers ARE shown */
+.prism-code.line-numbers {
+    padding-left: 3.8em !important;
+}
+
 /* Smooth scrollbar for code blocks */
 .prism-code::-webkit-scrollbar {
     height: 8px;
@@ -319,6 +329,11 @@ button[title="Copy"]:active,
     transition: background var(--transition-fast);
 }
 
+/* Token lines in code blocks WITHOUT line numbers - minimal left padding */
+.prism-code:not(.line-numbers) .token-line {
+    padding-left: var(--spacing-xs);
+}
+
 .prism-code[class*="language-"] .token-line:nth-child(even) {
     background: transparent;
 }
@@ -343,8 +358,8 @@ button[title="Copy"]:active,
 .prism-code:not(.line-numbers) .token-line.theme-code-block-highlighted-lines,
 .prism-code:not(.line-numbers) .token-line.highlight-line {
     border-left: 3px solid var(--ifm-color-primary);
-    margin-left: calc(-1 * var(--spacing-md));
-    padding-left: calc(var(--spacing-md) + 3px);
+    margin-left: calc(-1 * var(--spacing-sm));
+    padding-left: calc(var(--spacing-sm) * 2 - 3px);
 }
 
 /* Focused lines */

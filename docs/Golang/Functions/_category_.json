@@ -1,0 +1,9 @@
+{
+  "label": "Functions",
+  "position": 3,
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn about functions in Go - from defining and calling functions to understanding parameters and return values."
+  }
+}

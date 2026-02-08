@@ -1,0 +1,117 @@
+---
+sidebar_position: 2
+title: Declaring Variables
+---
+
+import Quiz from '@site/src/components/Quiz';
+
+# Declaring Variables
+
+## Using var Keyword
+
+```go
+var mySkillIssues int
+mySkillIssues = 42
+```
+
+The first line, `var mySkillIssues int`, defaults the `mySkillIssues` variable to its zero value, `0`. And the next line `mySkillIssues = 42` will override the value to `42`.
+
+You can also declare and assign in one line:
+
+```go
+var mySkillIssues int = 42
+```
+
+## Short Variable Declaration (Walrus Operator)
+
+Sad variable definition:
+```go
+var mySkillIssues int
+mySkillIssues = 42
+```
+
+Short variable definition:
+```go
+mySkillIssues := 42
+```
+
+The walrus operator `:=` declares a new variable called `mySkillIssues` with value 42 and Go automatically identifies the type as `int` as the value `42` is an integer. Yay `type inference`!
+
+### When to use Walrus Operator?
+
+The `:=` (walrus operator) should be used almost everywhere possible, but the limitation is that we can't use it outside the function like `global/package scope`.
+
+Type inference is based on value assigned:
+
+```go 
+myInt := 42              // int
+myFloat := 3.14159       // float64
+myString := "Hello!"     // string
+myBool := true           // bool
+```
+
+## Same Line Declaration
+
+In Go we can declare multiple variables on the same line:
+
+```go
+mileage, company := 25000, "Toyota"
+```
+
+The above is same as:
+
+```go
+mileage := 25000
+company := "Toyota"
+```
+
+You can also use this with `var`:
+
+```go
+var age, name = 25, "John"
+```
+
+### Practical Example
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    // Multiple declarations on same line
+    x, y, z := 1, 2, 3
+    firstName, lastName := "John", "Doe"
+    
+    fmt.Printf("Coordinates: x=%d, y=%d, z=%d\n", x, y, z)
+    fmt.Printf("Name: %s %s\n", firstName, lastName)
+    
+    // Swapping values (Go makes it easy!)
+    x, y = y, x
+    fmt.Printf("After swap: x=%d, y=%d\n", x, y)
+}
+```
+
+```txt title="Output"
+Coordinates: x=1, y=2, z=3
+Name: John Doe
+After swap: x=2, y=1
+```
+
+:::warning
+You cannot use `:=` outside of a function. For package-level variables, you must use `var`.
+:::
+
+## Quiz
+
+<Quiz
+  question="What does the walrus operator `:=` do?"
+  options={[
+    "Only assigns a value to an existing variable",
+    "Declares a new variable and assigns a value with type inference",
+    "Compares two values for equality",
+    "Declares a constant"
+  ]}
+  correctIndex={1}
+  explanation="The walrus operator `:=` declares a new variable and assigns a value to it. Go automatically infers the type from the assigned value. This is called short variable declaration."
+/>

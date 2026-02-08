@@ -1,0 +1,91 @@
+---
+sidebar_position: 7
+title: Formatting Strings
+---
+
+import Quiz from '@site/src/components/Quiz';
+
+# Formatting Strings in Go
+
+Go provides a powerful way to format strings using the `fmt` package. This is essential for creating readable output and building strings dynamically.
+
+## Key Functions
+
+| Function | Description | Returns |
+|----------|-------------|---------|
+| `fmt.Printf()` | Prints formatted string to stdout | Nothing (prints directly) |
+| `fmt.Sprintf()` | Returns formatted string | `string` |
+| `fmt.Fprintf()` | Writes formatted string to a writer | Number of bytes written |
+
+## Format Specifiers
+
+### Common Specifiers
+
+| Specifier | Type | Example |
+|-----------|------|---------|
+| `%v` | Any value (default format) | `fmt.Printf("%v", 42)` → `42` |
+| `%d` | Integer (decimal) | `fmt.Printf("%d", 42)` → `42` |
+| `%s` | String | `fmt.Printf("%s", "hi")` → `hi` |
+| `%f` | Float | `fmt.Printf("%f", 3.14)` → `3.140000` |
+| `%t` | Boolean | `fmt.Printf("%t", true)` → `true` |
+| `%T` | Type of value | `fmt.Printf("%T", 42)` → `int` |
+| `%%` | Literal percent sign | `fmt.Printf("100%%")` → `100%` |
+
+## Default Representation with %v
+
+The `%v` variant prints any value in a default format:
+
+```go
+name := "Alice"
+age := 30
+isStudent := true
+
+fmt.Printf("Name: %v, Age: %v, Student: %v\n", name, age, isStudent)
+// Output: Name: Alice, Age: 30, Student: true
+```
+
+## Sprintf - Building Strings
+
+`fmt.Sprintf` returns a formatted string without printing it:
+
+```go title="String"
+s := fmt.Sprintf("I am %s years old", "way too many")
+// s = "I am way too many years old"
+```
+
+```go title="Integer"
+msg := fmt.Sprintf("You have %d new messages", 5)
+// msg = "You have 5 new messages"
+```
+
+```go title="Float with Precision"
+// Default float formatting
+f1 := fmt.Sprintf("Pi is approximately %f", 3.14159)
+// f1 = "Pi is approximately 3.141590"
+
+// Limit to 2 decimal places
+f2 := fmt.Sprintf("Pi is approximately %.2f", 3.14159)
+// f2 = "Pi is approximately 3.14"
+
+// Limit to 4 decimal places
+f3 := fmt.Sprintf("Pi is approximately %.4f", 3.14159)
+// f3 = "Pi is approximately 3.1416"
+```
+
+:::tip
+Use `%v` when you don't care about specific formatting. Use specific specifiers (`%d`, `%s`, `%f`) when you need control over the output format.
+:::
+
+## Quiz
+
+<Quiz
+  question="What is the difference between fmt.Printf() and fmt.Sprintf()?"
+  options={[
+    "Printf is faster than Sprintf",
+    "Printf prints to console, Sprintf returns a string",
+    "Sprintf can only format strings, Printf can format any type",
+    "There is no difference, they are aliases"
+  ]}
+  correctIndex={1}
+  explanation="fmt.Printf() prints the formatted string directly to standard output (console), while fmt.Sprintf() returns the formatted string as a value that you can store in a variable or use elsewhere in your code."
+/>

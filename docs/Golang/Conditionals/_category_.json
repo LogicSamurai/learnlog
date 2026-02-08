@@ -1,0 +1,9 @@
+{
+  "label": "Conditionals",
+  "position": 2,
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn about conditionals in Go - from if statements to switch cases and type assertions."
+  }
+}

@@ -1,0 +1,120 @@
+---
+sidebar_position: 6
+title: Constants
+---
+
+import Quiz from '@site/src/components/Quiz';
+
+# Constants
+
+Constants are like variables but their value **cannot be changed** after they are declared. They are declared using the `const` keyword.
+
+## Declaring Constants
+
+```go
+const pi = 3.14159
+const appName = "LearnLog"
+const maxUsers = 1000
+```
+
+### Constants vs Variables
+
+| Feature | Constants (`const`) | Variables (`var`) |
+|---------|---------------------|-------------------|
+| Can change value | ❌ No | ✅ Yes |
+| Must be known at compile time | ✅ Yes | ❌ No |
+| Type inference | ✅ Yes | ✅ Yes |
+| Can use `:=` | ❌ No | ✅ Yes |
+
+## Computed Constants
+
+Constants can be computed using expressions, but only if the computation can be done at **compile time**:
+
+```go
+const firstName = "John"
+const lastName = "Doe"
+const fullName = firstName + " " + lastName // OK - computed at compile time
+
+const secondsInMinute = 60
+const minutesInHour = 60
+const secondsInHour = secondsInMinute * minutesInHour // OK - computed at compile time
+```
+
+### What WON'T Work
+
+You can't declare a constant that can only be computed at runtime:
+
+```go
+// ❌ This will NOT compile
+const currentTime = time.Now() // Error: time.Now() is evaluated at runtime
+
+// ✅ This works - use a variable instead
+var currentTime = time.Now()
+```
+
+## Grouped Constants
+
+You can group related constants together:
+
+```go
+const (
+    StatusPending   = "pending"
+    StatusApproved  = "approved"
+    StatusRejected  = "rejected"
+)
+
+const (
+    KB = 1024
+    MB = KB * 1024
+    GB = MB * 1024
+    TB = GB * 1024
+)
+```
+
+## Practical Example
+
+```go
+package main
+
+import "fmt"
+
+const (
+    appName    = "LearnLog"
+    appVersion = "1.0.0"
+    maxRetries = 3
+)
+
+func main() {
+    fmt.Printf("Welcome to %s v%s\n", appName, appVersion)
+    fmt.Printf("Maximum retry attempts: %d\n", maxRetries)
+    
+    // This would cause a compile error:
+    // appVersion = "2.0.0" // Error: cannot assign to appVersion
+}
+```
+
+```txt title="Output"
+Welcome to LearnLog v1.0.0
+Maximum retry attempts: 3
+```
+
+:::tip When to Use Constants
+Use constants for values that:
+- Never change (like Pi, app version, configuration limits)
+- Are known at compile time
+- Should be protected from accidental modification
+:::
+
+## Quiz
+
+<Quiz
+  question="Why would `const currentTime = time.Now()` cause a compilation error?"
+  options={[
+    "time.Now() returns a string, not a valid constant type",
+    "Constants cannot store time values",
+    "time.Now() is evaluated at runtime, but constants must be known at compile time",
+    "You need to use var instead of const for all function calls"
+  ]}
+  correctIndex={2}
+  explanation="Constants in Go must have values that can be determined at compile time. Since time.Now() gets the current time when the program runs (runtime), it cannot be used to initialize a constant. Use a variable instead."
+/>
