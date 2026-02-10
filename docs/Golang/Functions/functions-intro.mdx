@@ -203,3 +203,122 @@ func main() {
 	// newX is 2, newY is 4, newZ is 6
 }
 ```
+
+## Defer Statement
+It is a feature in Go that allows us to call a particular function at the time when the main function finishes executing and planning to return. The deferred function will be executed after the surrounding function returns, but before the actual return value is sent back to the caller.
+
+```go
+func GetUsername(dstName, srcName string) (username string, err error) {
+	// Open a connection to a database
+	conn, _ := db.Open(srcName)
+
+	// Close the connection *anywhere* the GetUsername function returns
+	defer conn.Close()
+
+	username, err = db.FetchUser()
+	if err != nil {
+		// The defer statement is auto-executed if we return here
+		return "", err
+	}
+
+	// The defer statement is auto-executed if we return here
+	return username, nil
+}
+```
+
+In the above example, the `defer conn.Close()` statement ensures that the database connection is closed regardless of how the `GetUsername` function exits, whether it returns successfully or encounters an error. This helps prevent resource leaks and ensures proper cleanup of resources.
+
+### Multiple Defer Statements
+You can have multiple `defer` statements in a function, and they will be executed in last-in-first-out (LIFO) order. This means that the last `defer` statement will be executed first when the function returns.
+
+```go
+func CreateTempFile() {
+	f, _ := os.Create("temp-42.txt")
+	defer os.Remove(f.Name()) // executed second
+	defer f.Close()           // executed first
+
+	fmt.Fprintln(f, "How many roads must a man walk down?")
+}
+```
+In the above example, the `defer f.Close()` statement will be executed first to close the file, and then the `defer os.Remove(f.Name())` statement will be executed to remove the temporary file. This ensures that the file is properly closed before it is deleted.
+
+## Block Scope
+In Go, variables declared within a function are only accessible within that function. This is known as block scope. Variables declared in an outer block are not accessible in an inner block, and vice versa.
+
+Like there can be codes where u will see plain old explicit block.
+```go
+package main
+
+import fmt
+
+func main() {
+    {
+        age := 19
+        // this is okay
+        fmt.Println(age)
+    }
+
+    // this is not okay
+    // the age variable is out of scope
+    fmt.Println(age)
+}
+```
+
+## Closures
+A closure is a function that references variables from outside its body. The function can access and modify the variables even after the outer function has finished executing.
+
+```go
+func concatter() func(string) string {
+	doc := ""
+	return func(word string) string {
+		doc += word + " "
+		return doc
+	}
+}
+
+func main() {
+	harryPotterAggregator := concatter()
+	harryPotterAggregator("Mr.")
+	harryPotterAggregator("and")
+	harryPotterAggregator("Mrs.")
+	harryPotterAggregator("Dursley")
+	harryPotterAggregator("of")
+	harryPotterAggregator("number")
+	harryPotterAggregator("four,")
+	harryPotterAggregator("Privet")
+
+	fmt.Println(harryPotterAggregator("Drive"))
+	// Mr. and Mrs. Dursley of number four, Privet Drive
+}
+```
+
+## Currying
+Function currying is a concept from functional programming and involves partial application of functions. It allows a function with multiple arguments to be transformed into a sequence of functions, each taking a single argument.
+
+```go
+func main() {
+  squareFunc := selfMath(multiply)
+  doubleFunc := selfMath(add)
+
+  fmt.Println(squareFunc(5))
+  // prints 25
+
+  fmt.Println(doubleFunc(5))
+  // prints 10
+}
+
+func multiply(x, y int) int {
+  return x * y
+}
+
+func add(x, y int) int {
+  return x + y
+}
+
+func selfMath(mathFunc func(int, int) int) func (int) int {
+  return func(x int) int {
+    return mathFunc(x, x)
+  }
+}
+```
+In the example above, the `selfMath` function takes in a function as its parameter and returns a function that itself returns the value of running that input function on its parameter.
