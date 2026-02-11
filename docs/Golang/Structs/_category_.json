@@ -1,0 +1,9 @@
+{
+  "label": "Structs",
+  "position": 3,
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn about structs in Go - how to define and use them to create complex data types."
+  }
+}

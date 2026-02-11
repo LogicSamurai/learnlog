@@ -1,0 +1,187 @@
+---
+title: Structs
+sidebar_label: Intro to Structs
+description: "Learn about structs in Go - how to define and use them to create complex data types."
+---
+
+# Structs in Go
+Structs in Go represent structured data. It's often convenient to group different types of variables together. For example, if we want to represent a car we could do the following:
+
+```go
+type car struct {
+    brand string
+    model string
+    doors int
+    mileage int
+}
+```
+This creates a new struct type called `car` with four fields: `brand`, `model`, `doors`, and `mileage`. Each field has a name and a type.
+
+:::tip
+Structs are mainly used for cases where we we required mixed typed data for which in other languages we would use dictionary or objects.
+:::
+
+## Nested Structs in Go
+Structs can be nested to represent more complex entities:
+```go
+type engine struct {
+    horsepower int
+    type string
+}
+type car struct {
+    brand string
+    model string
+    doors int
+    mileage int
+    engine engine
+}
+```
+In this example, we have an `engine` struct nested within the `car` struct. This allows us to represent a car with its engine specifications in a structured way.
+
+To access fields of a struct we can use the dot notation:
+```go
+myCar := car{
+    brand: "Toyota",
+    model: "Corolla",
+    doors: 4,
+    mileage: 50000,
+    engine: engine{
+        horsepower: 132,
+        type: "Gasoline",
+    },
+}
+fmt.Println(myCar.brand) // Output: Toyota
+fmt.Println(myCar.engine.horsepower) // Output: 132
+```
+In this example, we create an instance of the `car` struct and initialize its fields. We can then access the `brand` field directly and the `horsepower` field of the nested `engine` struct using dot notation.
+
+
+## Anonymous Structs in Go
+Go also supports anonymous structs, which are useful for creating temporary data structures without defining a new type:
+```go
+myCar := struct {
+    brand string
+    model string
+    doors int
+}{
+    brand: "Honda",
+    model: "Civic",
+    doors: 4,
+}
+fmt.Println(myCar.brand) // Output: Honda
+```
+In this example, we define an anonymous struct with three fields and create an instance of it. Anonymous structs are often used for quick data grouping without the need for a formal type definition.
+
+```go title="Another example"
+type car struct {
+    brand string
+    model string
+    doors int
+    mileage int
+    engine struct {
+        horsepower int
+        type string
+    }
+}
+
+var myCar = car{
+    brand: "Ford",
+    model: "Mustang",
+    doors: 2,
+    mileage: 30000,
+    engine: struct {
+        horsepower int
+        type string
+    }{
+        horsepower: 450,
+        type: "Gasoline",
+    },
+}
+
+### Why should you use an Anonymous Struct?
+In general, prefer named structs. Named structs make it easier to read and understand your code and can be reused throughout your codebase. Anonymous structs should be used when we know that we will only need a struct once and don't want to create a new type for it. 
+
+## Embedded Structs in Go
+Go is not an object oriented language, however embedded structs allow us to achieve a similar effect to inheritance in other languages. When we embed a struct within another struct, the fields of the embedded struct become part of the outer struct. This allows us to reuse code and create more complex data structures.
+
+```go
+type person struct {
+    name string
+    age int
+}
+type employee struct {
+    person // Embedded struct
+    position string
+    salary int
+}
+```
+
+In this example, we have a `person` struct that contains basic information about a person, and an `employee` struct that embeds the `person` struct and adds additional fields for position and salary. This allows us to create an employee with all the fields of a person without having to redefine them.
+
+To create an instance of the `employee` struct, we can do the following:
+```go
+myEmployee := employee{
+    person: person{
+        name: "Alice",
+        age: 30,
+    },
+    position: "Software Engineer",
+    salary: 100000,
+}
+fmt.Println(myEmployee.name) // Output: Alice
+fmt.Println(myEmployee.position) // Output: Software Engineer
+```
+
+## Nested vs Embedded Structs
+The main difference between nested and embedded structs is that in a nested struct, the fields of the inner struct are accessed through the outer struct, while in an embedded struct, the fields of the embedded struct are promoted to the outer struct and can be accessed directly.
+
+How can a person differentiate between a nested struct and an embedded struct? 
+- In a nested struct the inner struct is defined as a field of the outer struct
+
+```go
+type Engine struct {
+    horsepower int
+}
+
+type Car struct {
+    brand  string
+    engine Engine   // 👈 field name exists
+}
+```
+
+Usage:
+```go
+c := Car{
+    brand: "Toyota",
+    engine: Engine{
+        horsepower: 132,
+    },
+}
+
+fmt.Println(c.engine.horsepower)  // ✅ must go through engine
+```
+
+- In an embedded struct the inner struct is defined without a field name, which promotes its fields to the outer struct . In this field is Anonymous
+
+```go
+type Engine struct {
+    horsepower int
+}
+
+type Car struct {
+    brand string
+    Engine  // 👈 NO field name
+}
+```
+
+Usage:
+```go
+c := Car{
+    brand: "Toyota",
+    Engine: Engine{
+        horsepower: 132,
+    },
+}
+
+fmt.Println(c.horsepower)  // ✅ works
+```
